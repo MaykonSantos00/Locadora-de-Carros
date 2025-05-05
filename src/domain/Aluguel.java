@@ -20,4 +20,12 @@ public class Aluguel {
         this.dataDevolucao = LocalTime.now();
         this.dataAluguel = null;
     }
+
+    public LocalDate getDataAluguel() {
+        return dataAluguel;
+    }
+
+    public LocalTime getDataDevolucao() {
+        return dataDevolucao;
+    }
 }

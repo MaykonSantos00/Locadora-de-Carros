@@ -21,8 +21,10 @@ public class Carro {
         return "Carro{" +
                 "modelo='" + modelo + '\'' +
                 ", marca='" + marca + '\'' +
-                ", tipo de carro='" + tipoCarro + '\'' +
+                ", placa='" + placa + '\'' +
                 ", cor='" + cor + '\'' +
+                ", disponivel=" + disponivel +
+                ", tipoCarro=" + tipoCarro +
                 '}';
     }
 

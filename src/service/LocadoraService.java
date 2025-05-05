@@ -13,7 +13,7 @@ public class LocadoraService {
     public List<Aluguel> alugueis;
 
     public LocadoraService() {
-        this.carros = new ArrayList<Carro>();
+        this.carros = new ArrayList<>();
         this.clientes = new ArrayList<>();
         this.alugueis = new ArrayList<>();
     }
@@ -48,5 +48,13 @@ public class LocadoraService {
         for (Carro carro : carros) {
             System.out.println(carro);
         }
+    }
+
+    public void adicionarAluguel(Aluguel aluguel) {
+        this.alugueis.add(aluguel);
+    }
+
+    public void removerAluguel(Aluguel aluguel) {
+        this.alugueis.remove(aluguel);
     }
 }

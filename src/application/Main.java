@@ -5,6 +5,8 @@ import domain.Carro;
 import domain.Cliente;
 import domain.TipoCarro;
 import exception.AluguelExecption;
+import exception.CarroIndisponivelException;
+import exception.ClienteNuloException;
 
 import java.util.Scanner;
 
@@ -17,13 +19,13 @@ public class Main {
 
         while (executando) {
             System.out.println("## Menu Locadora ##");
-            System.out.println("1 - Cadastrar cliente");
-            System.out.println("2 - Cadastrar carro");
-            System.out.println("3 - Alugar carro");
-            System.out.println("4 - Devolver carro");
-            System.out.println("5 - Listar carros disponíveis");
-            System.out.println("6 - Listar aluguéis");
-            System.out.println("0 - Sair");
+            System.out.println("[1] - Cadastrar Cliente");
+            System.out.println("[2] - Cadastrar Carro");
+            System.out.println("[3] - Alugar Carro");
+            System.out.println("[4] - Devolver Carro");
+            System.out.println("[5] - Listar Carros Disponíveis");
+            System.out.println("[6] - Listar Aluguéis");
+            System.out.println("[0] - Sair");
             System.out.print("Escolha uma opção: ");
 
             int opcao = teclado.nextInt();
@@ -38,6 +40,7 @@ public class Main {
                     System.out.println("Digite o seu Telefone: ");
                     String telefoneCliente = teclado.next();
                     controller.cadastrarCliente(nomeCliente, cpfCliente, telefoneCliente);
+                    System.out.println("Cliente cadastrado com sucesso!");
                     break;
                 case 2:
                     System.out.println("Você escolheu Cadastrar carro");
@@ -58,6 +61,7 @@ public class Main {
                         default -> TipoCarro.PICAPE;
                     };
                     controller.cadastrarCarro(modeloCarro, marcaCarro, placaCarro, corCarro, categoria);
+                    System.out.println("Carro cadastrado com sucesso!");
                     break;
                 case 3:
                     System.out.println("Você escolheu alugar um Carro");
@@ -74,7 +78,13 @@ public class Main {
                             System.out.println(e.getMessage());
                         }
                     }
-                    controller.alugarCarro(cpfAlugar, placaAlugar);
+                    try {
+                        controller.alugarCarro(cpfAlugar, placaAlugar);
+                    } catch (ClienteNuloException e) {
+                        throw new RuntimeException(e);
+                    } catch (CarroIndisponivelException e) {
+                        throw new RuntimeException(e);
+                    }
                     break;
                 case 4:
                     System.out.println("Você escolheu Devolver o carro");

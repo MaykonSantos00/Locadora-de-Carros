@@ -1,5 +1,5 @@
 package domain;
 
 public enum TipoCarro {
-    SUV, PICAPE;
+    SUV, PICAPE, ESPORTIVO, SEDA, HATCH;
 }
